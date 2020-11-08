@@ -1,4 +1,12 @@
 
+//create an artist list:
+    //name
+    //description
+
+
+
+//create a list "array"
+
 
 
 
@@ -9,7 +17,7 @@ exports.getAll = (req, res) => {
 
 
 exports.create = (req, res) => {
-    console.log("createArtists")
+    console.log(req.body)
     res.json({test:"createArtists"})
 }
 

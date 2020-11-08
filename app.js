@@ -3,32 +3,13 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const ctrl = require("./controllers/artistController");
+const search = require("./controllers/artist");
+const errorHandler = require("./controllers/error");
+const cors = require("cors");
 
 app.use(bodyParser.json());
-// const Artist = require("./models/Artist");
-// const artists = require("../mo/artists.json");
 
-// app.get("/artist", (req, resp) => {
-//   Artist.find({}).then((artists) => {
-//     resp.json(artists);
-//   });
-// });
-
-// app.put("/artist/:id", (req, res) => {
-//   console.log(req.body);
-//   Artist.findOneAndUpdate({ _id: req.params.id }, req.body, {
-//     new: true,
-//   }).then((artist) => {
-//     res.json(artist);
-//   });
-// });
-
-// app.delete("/artist/:id", (req, res) => {
-//   Artist.findOneAndRemove({ _id: req.params.id }).then((artist) => {
-//     res.json(artist);
-//   });
-// });
-
+app.use(cors());
 
 const router = express.Router();
 router.route("/")
@@ -43,7 +24,9 @@ router.route("/:id")
 
 app.use("/artistlists", router)
 
+app.get("/artist", search)
 
+app.all("*", errorHandler)
 
 
 
