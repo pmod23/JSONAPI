@@ -1,4 +1,4 @@
-
+const ArtistList = require("../models/artistlists.js");
 //create an artist list:
     //name
     //description
@@ -7,34 +7,93 @@
 
 //create a list "array"
 
+exports.getAll = async (req, res) => {
+    try {
+        const doc = await ArtistList.find()
+        res.json({
+            status:"success",
+            data: doc
+        });
+    }
 
+    catch (err) {
+        console.log (err);
+        res.json({err})
 
+    }
 
-exports.getAll = (req, res) => {
-    console.log("getAll")
-    res.json({test:"getAll"})
 }
 
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     console.log(req.body)
-    res.json({test:"createArtists"})
+    if (!req.body.name) return res.status(400).json({message:"please include correct artistlists name"})
+    try {
+        const doc = await ArtistList.create(req.body)
+        res.json({
+            status:"success",
+            data: doc
+        });
+    }
+
+    catch (err) {
+        console.log (err);
+        res.json({err})
+
+    }
+
 }
 
 
-exports.update = (req, res) => {
-    console.log("updateArtists")
-    res.json({test:"updateArtists"})
+exports.update = async (req, res) => {
+    try {
+        const doc = await ArtistList.findByIdAndUpdate(req.params.id, req.body, {
+            runValidators: true,
+            new: true
+        })
+        res.json({
+            status:"success",
+            data: doc
+        });
+    }
+
+    catch (err) {
+        console.log (err);
+        res.json({err})
+
+    }
 }
 
 
-exports.delete = (req, res) => {
-    console.log("deleteArtists")
-    res.json({test:"deleteArtists"})
+exports.delete = async (req, res) => {
+    try {
+        const doc = await ArtistList.findByIdAndDelete(req.params.id)
+        res.json({
+            status:"success",
+            data: doc
+        });
+    }
+
+    catch (err) {
+        console.log (err);
+        res.json({err})
+
+    }
 }
 
 
-exports.getOne = (req, res) => {
-    console.log("getOne")
-    res.json({test:"getOne"})
+exports.getOne = async (req, res) => {
+    try {
+        const doc = await ArtistList.findById(req.params.id)
+        res.json({
+            status:"success",
+            data: doc
+        });
+    }
+
+    catch (err) {
+        console.log (err);
+        res.json({err})
+
+    }
 }

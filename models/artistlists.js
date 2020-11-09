@@ -1,4 +1,4 @@
-const mongoose = require("../db/connection.js");
+const mongoose = require("mongoose");
 //const Schema = mongoose.Schema;
 
 // let artistSchema = new Schema({
@@ -21,9 +21,10 @@ const artistListsSchema = new mongoose.Schema({
     },
     description: String,
     artists: [{
-        type: mongoose.Schema.objectId,
-        ref:"Artist",
-
+        name: String,
+        country: String,
+        igUrl: String,
+        id: String
     }]
 })
 const ArtistList = mongoose.model("ArtistList", artistListsSchema)

@@ -1,11 +1,10 @@
 const axios = require("axios");
 
-const apiKey = "b70ce190190a14bfe6018efee0fa630c";
 
 module.exports = async (req, res) => {
     console.log(req.query)
     if (!req.query.name) return res.status(400).json({message:"please include correct artist name"})
-    const url = `https://api.musixmatch.com/ws/1.1/artist.search?apikey=${apiKey}&q_artist=${req.query.name}`;
+    const url = `https://api.musixmatch.com/ws/1.1/artist.search?apikey=${process.env.API_KEY}&q_artist=${req.query.name}`;
 console.log(url);
 
 try {
@@ -20,6 +19,8 @@ catch (err) {
 }
 
 }
+
+
 
 //retrieve the search query
 

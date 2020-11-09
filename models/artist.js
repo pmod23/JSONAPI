@@ -1,4 +1,4 @@
-const mongoose = require("../db/connection.js");
+const mongoose = require("mongoose");
 
 
 const artistSchema = new mongoose.Schema({
