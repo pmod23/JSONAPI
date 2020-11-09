@@ -1,14 +1,4 @@
 const mongoose = require("mongoose");
-//const Schema = mongoose.Schema;
-
-// let artistSchema = new Schema({
-//   artist: {
-//     artist_id: Number,
-//     artist_name: String,
-//     artist_rating: Number,
-//     artist_country: String,
-//   },
-// });
 
 const artistListsSchema = new mongoose.Schema({
     name: {
@@ -25,7 +15,10 @@ const artistListsSchema = new mongoose.Schema({
         country: String,
         igUrl: String,
         id: String
-    }]
+    }],
+    slug: String
+
+
 })
 const ArtistList = mongoose.model("ArtistList", artistListsSchema)
 module.exports = ArtistList;

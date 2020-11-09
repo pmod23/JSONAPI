@@ -1,4 +1,4 @@
-const ArtistList = require("../models/artistlists.js");
+const ArtistList = require("../models/artistplaylists.js");
 //create an artist list:
     //name
     //description

@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+app.get("/artist", search)
+
 const router = express.Router();
 router.route("/")
 .get(ctrl.getAll)
@@ -22,9 +24,10 @@ router.route("/:id")
 .patch(ctrl.update)
 .delete(ctrl.delete);
 
+
 app.use("/artistlists", router)
 
-app.get("/artist", search)
+app.get("/", (req, res) => res.redirect("/artistlists"))
 
 app.all("*", errorHandler)
 

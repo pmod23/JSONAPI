@@ -1,4 +1,4 @@
-const Artist = require("../models/artistlists");
+const Artist = require("../models/artistplaylists");
 const artists = require("./artists.json");
 
 Artist.deleteMany({}).then(() => {
