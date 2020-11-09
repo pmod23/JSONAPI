@@ -47,7 +47,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        const doc = await ArtistList.findByIdAndUpdate(req.params.id, req.body, {
+        const doc = await ArtistList.findOneAndUpdate({slug: req.params.slug}, req.body, {
             runValidators: true,
             new: true
         })
@@ -67,7 +67,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const doc = await ArtistList.findByIdAndDelete(req.params.id)
+        const doc = await ArtistList.findOneAndDelete({slug: req.params.slug})
         res.json({
             status:"success",
             data: doc
@@ -84,7 +84,7 @@ exports.delete = async (req, res) => {
 
 exports.getOne = async (req, res) => {
     try {
-        const doc = await ArtistList.findById(req.params.id)
+        const doc = await ArtistList.findOne({slug: req.params.slug})
         res.json({
             status:"success",
             data: doc

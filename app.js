@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.get("/artist", search)
+app.get("/api/artist", search)
 
 const router = express.Router();
 router.route("/")
@@ -19,15 +19,15 @@ router.route("/")
 .post(ctrl.create);
 
 
-router.route("/:id")
+router.route("/:slug")
 .get(ctrl.getOne)
 .patch(ctrl.update)
 .delete(ctrl.delete);
 
 
-app.use("/artistlists", router)
+app.use("/api/artistlists", router)
 
-app.get("/", (req, res) => res.redirect("/artistlists"))
+app.get("/", (req, res) => res.redirect("/api/artistlists"))
 
 app.all("*", errorHandler)
 
